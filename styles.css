@@ -73,7 +73,6 @@ body::before {
 
 .topbar,
 .hero,
-.feature-strip,
 .contact-grid,
 .portfolio-section,
 .cta-panel {
@@ -137,8 +136,7 @@ body::before {
 .profile-card,
 .contact-card,
 .portfolio-section,
-.cta-panel,
-.feature-strip article {
+.cta-panel {
   border: 1px solid var(--border);
   background: var(--surface);
   backdrop-filter: blur(18px);
@@ -325,7 +323,8 @@ h3 {
 .profile-photo {
   display: block;
   width: 100%;
-  height: 380px;
+  height: auto;
+  aspect-ratio: 3 / 4;
   border-radius: 20px;
   object-fit: cover;
   object-position: center 20%;
@@ -358,39 +357,6 @@ h3 {
 
 .profile-title-row h2 {
   margin-bottom: 8px;
-}
-
-.feature-strip {
-  display: grid;
-  gap: 14px;
-  margin-top: 18px;
-}
-
-.feature-strip article {
-  border-radius: 24px;
-  padding: 18px 18px 20px;
-}
-
-.feature-strip span {
-  display: inline-block;
-  color: var(--accent-dark);
-  font-size: 0.78rem;
-  font-weight: 800;
-  letter-spacing: 0.16em;
-  margin-bottom: 10px;
-}
-
-.feature-strip strong {
-  display: block;
-  font-family: "Cormorant Garamond", serif;
-  font-size: 2rem;
-  margin-bottom: 8px;
-}
-
-.feature-strip p {
-  margin: 0;
-  color: var(--muted);
-  line-height: 1.65;
 }
 
 .contact-grid {
@@ -439,14 +405,19 @@ h3 {
 }
 
 .portfolio-grid {
-  display: grid;
-  grid-template-columns: 1fr;
+  display: flex;
   gap: 14px;
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  padding: 2px 2px 12px;
+  scroll-snap-type: x mandatory;
+  scrollbar-color: var(--accent) transparent;
 }
 
 .portfolio-item {
   position: relative;
-  min-height: 190px;
+  flex: 0 0 min(82vw, 300px);
+  aspect-ratio: 3 / 4;
   border-radius: 24px;
   overflow: hidden;
   padding: 18px;
@@ -455,6 +426,7 @@ h3 {
   justify-content: flex-end;
   background: #d7c49b;
   color: #fff;
+  scroll-snap-align: start;
 }
 
 .portfolio-item img {
@@ -516,14 +488,6 @@ h3 {
   color: rgba(255, 255, 255, 0.92);
   font-size: 1.1rem;
   line-height: 1.4;
-}
-
-.portfolio-item.tall {
-  min-height: 250px;
-}
-
-.portfolio-item.wide {
-  min-height: 220px;
 }
 
 .cta-panel {
@@ -669,11 +633,6 @@ h3 {
     padding-top: 32px;
   }
 
-  .feature-strip {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    margin-top: 20px;
-  }
-
   .hero {
     grid-template-columns: minmax(0, 1.15fr) minmax(320px, 0.85fr);
     gap: 22px;
@@ -695,19 +654,6 @@ h3 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .portfolio-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .portfolio-item.tall {
-    grid-row: span 2;
-    min-height: 100%;
-  }
-
-  .portfolio-item.wide {
-    grid-column: span 2;
-  }
-
   .cta-panel {
     grid-template-columns: 1fr auto;
     padding: 28px 32px;
@@ -719,12 +665,8 @@ h3 {
     gap: 28px;
   }
 
-  .portfolio-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-
-  .portfolio-item.wide {
-    grid-column: span 2;
+  .portfolio-item {
+    flex-basis: 280px;
   }
 }
 
@@ -748,10 +690,6 @@ h3 {
   .portfolio-section,
   .cta-panel {
     border-radius: 24px;
-  }
-
-  .profile-photo {
-    height: 320px;
   }
 
   .profile-badge {
