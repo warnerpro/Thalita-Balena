@@ -1,0 +1,9 @@
+# Arquivos locais do sistema e do editor
+.DS_Store
+Thumbs.db
+.vscode/
+
+# Dependencias e arquivos gerados
+node_modules/
+dist/
+build/
