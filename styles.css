@@ -126,6 +126,14 @@ body::before {
   flex: 0 0 auto;
 }
 
+.topbar-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
 .hero {
   display: grid;
   gap: 20px;
@@ -714,6 +722,12 @@ h3 {
 
   .topbar-action {
     padding-inline: 14px;
+  }
+
+  .topbar-actions .button {
+    min-height: 44px;
+    padding-inline: 14px;
+    font-size: 0.88rem;
   }
 
   .hero-actions .button {
